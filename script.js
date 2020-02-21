@@ -1,5 +1,3 @@
-// Assignment Code
-
 var generateBtn = document.querySelector("#generate");
 var passwordText = document.querySelector("#password");
 var passwordLength = 0;
@@ -8,21 +6,19 @@ var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numeric = "0123456789";
 var specialCharacters = "!#$%&*+-./<=>?@[^_`{|}~";
 var chosenCharacters = "";
-var password = "";
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 // Write password to the #password input
 function writePassword() {
-  passwordText = "";
   chosenCharacters = "";
   var passwordText = document.querySelector("#password");
-  chooseCharacters();
-  passwordText.value = password;
+  passwordText.value = chooseCharacters();
 }
-// generate a random string that creates the password from the chosen characters
+// Generate a random string that creates the password from the users chosen character sets
 function generatePassword() {
+  var password = "";
   for (var i = 0; i < passwordLength; i++) {
     password =
       password +
@@ -30,8 +26,9 @@ function generatePassword() {
         Math.floor(Math.random() * chosenCharacters.length)
       );
   }
+  return password;
 }
-// What sort of Password do you want
+// Get user to define chosen character sets
 // Include arrays as selected by user
 function chooseCharacters() {
   // ask how many characters the password needs to be
@@ -69,7 +66,7 @@ function chooseCharacters() {
       chosenCharacters = chosenCharacters + specialCharacters;
     }
     alert("Your password has now been generated");
-    generatePassword();
+    return generatePassword();
   } else {
     alert("The password must be a number from 8 to 128, please try again.");
   }
